@@ -3,6 +3,7 @@
 AD5254_asukiaaa potentio(AD5254_ASUKIAAA_ADDR_A0_VDD_A1_VDD);
 
 void setup() {
+  Serial.begin(115200);
   potentio.begin();
 }
 
