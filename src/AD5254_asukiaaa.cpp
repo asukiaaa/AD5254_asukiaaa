@@ -1,5 +1,8 @@
 #include <AD5254_asukiaaa.h>
 
+#define EEPROM_CHANNEL_NUMBER 16
+#define ADDRESS_FLAG_EEPROM 0b00100000
+
 AD5254_asukiaaa::AD5254_asukiaaa(int address) {
   this->address = address;
   this->wire = NULL;
@@ -27,6 +30,18 @@ int AD5254_asukiaaa::writeRDAC(uint8_t ch, uint8_t v) {
 int AD5254_asukiaaa::readRDAC(uint8_t ch, uint8_t* v) {
   if (ch >= 4) return -1;
   uint8_t regAddr = ch;
+  return readI2c(regAddr, v);
+}
+
+int AD5254_asukiaaa::saveEEPROM(uint8_t ch, uint8_t v) {
+  if (ch >= EEPROM_CHANNEL_NUMBER) return -1;
+  uint8_t regAddr = ch | ADDRESS_FLAG_EEPROM;
+  return writeI2c(regAddr, v);
+}
+
+int AD5254_asukiaaa::loadEEPROM(uint8_t ch, uint8_t* v) {
+  if (ch >= EEPROM_CHANNEL_NUMBER) return -1;
+  uint8_t regAddr = ch | ADDRESS_FLAG_EEPROM;
   return readI2c(regAddr, v);
 }
 

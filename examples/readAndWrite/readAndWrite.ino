@@ -8,17 +8,23 @@ void setup() {
 }
 
 void loop() {
-  uint8_t resister;
-  if (potentio.readRDAC(0, &resister) == 0) {
-    Serial.println("RDAC of channel 0 is " + String(resister));
-  } else {
-    Serial.println("Cannot read RDAC of channel 0.");
+  uint8_t value;
+  for (uint8_t i = 0; i < 4; ++i) {
+    String indexStr = String(i);
+    if (potentio.readRDAC(i, &value) == 0) {
+      Serial.println("RDAC of channel " + indexStr + " is " + String(value));
+    } else {
+      Serial.println("Cannot read RDAC of channel " + indexStr + ".");
+    }
   }
-  // Make sure the WP is connected to VDD
-  if (potentio.writeRDAC(0, 200) == 0) {
-    Serial.println("Update RDAC of channel 0");
+
+  // Make sure the WP(write protect) is connected to VDD
+  uint8_t targetValue = (millis() / 1000) % 256;
+  if (potentio.writeRDAC(0, targetValue) == 0) {
+    Serial.println("Update RDAC of channel 0 to " + String(targetValue));
   } else {
     Serial.println("Cannot update RDAC of channel 0.");
   }
+
   delay(1000);
 }

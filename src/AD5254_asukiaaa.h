@@ -15,8 +15,8 @@ class AD5254_asukiaaa {
   int begin();
   int writeRDAC(uint8_t ch, uint8_t v);
   int readRDAC(uint8_t ch, uint8_t* v);
-  // int saveRDAC(uint8_t ch);
-  // int loadRDAC(uint8_t ch);
+  int saveEEPROM(uint8_t ch, uint8_t v);
+  int loadEEPROM(uint8_t ch, uint8_t* v);
 
  private:
   int address;
