@@ -4,7 +4,7 @@ A library to manage 256 position 4 ch digital potentiometer AD5254.
 
 # Usage
 
-See [an example project](./examples/readAndWrite/readAndWrite.ino).
+See [example projects](./examples).
 
 # License
 
