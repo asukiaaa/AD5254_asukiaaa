@@ -19,11 +19,13 @@ void loop() {
   }
 
   // Make sure the WP(write protect) is connected to VDD
+  uint8_t targetChannel = 0;
+  String channelStr = String(targetChannel);
   uint8_t targetValue = (millis() / 1000) % 256;
-  if (potentio.writeRDAC(0, targetValue) == 0) {
-    Serial.println("Update RDAC of channel 0 to " + String(targetValue));
+  if (potentio.writeRDAC(targetChannel, targetValue) == 0) {
+    Serial.println("Update RDAC of channel " + channelStr + " to " + String(targetValue));
   } else {
-    Serial.println("Cannot update RDAC of channel 0.");
+    Serial.println("Cannot update RDAC of channel " + channelStr + ".");
   }
 
   delay(1000);
