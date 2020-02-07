@@ -2,6 +2,20 @@
 
 A library to manage 256 position 4 ch digital potentiometer AD5254.
 
+# Installation
+
+## Arduino IDE
+
+You can install to Arduino IDE with using library manager.
+
+1. Select [Sketch -> Include Library -> Manage Libraries] to open library manager.
+2. Search AD5254 in library manager.
+3. Select `AD5254_asukiaaa` and install.
+
+## PlatformIO
+
+Add this library (`AD5254_asukiaaa`) to `lib_deps` on platformio.ini.
+
 # Usage
 
 ```c
